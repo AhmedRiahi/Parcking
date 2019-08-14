@@ -1,10 +1,12 @@
 import express from 'express';
+import * as routes from './config/routes';
 
 const app = express();
 const port = 3000;
-app.get('/', (req, res) => {
-  res.send('Hello Node');
-});
+
+
+routes.register(app);
+
 app.listen(port, err => {
   if (err) {
     return console.error(err);
