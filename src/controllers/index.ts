@@ -1,4 +1,1 @@
-import { HelloController } from "./hello";
-
-
-export const helloController = new HelloController();
+export { HelloController } from "./hello.controller";
