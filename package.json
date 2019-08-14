@@ -1,0 +1,28 @@
+{
+  "name": "parcking",
+  "version": "1.0.0",
+  "description": "Parcking car reservation app",
+  "main": "dist/app.js",
+  "scripts": {
+    "start":"tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedRiahi/Parcking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedRiahi/Parcking/issues"
+  },
+  "homepage": "https://github.com/AhmedRiahi/Parcking#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "tslint": "^5.18.0"
+  }
+}
