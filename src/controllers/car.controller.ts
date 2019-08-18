@@ -1,31 +1,22 @@
-
-import {ICar} from '../models/car.model';
 import {CarService} from '../services/car.service';
 import { Router } from 'express';
+import { inject,injectable } from 'inversify';
+import { interfaces, controller, httpGet, httpPost, httpDelete, request, queryParam, response, requestParam } from "inversify-express-utils";
+import { ICar } from '../models/car.model';
 
-export class CarController{
 
-    router: Router;
+@controller("/car")
+export class CarController {
+
 
     private carService: CarService;
 
-    constructor(){
-        this.router = Router();
-        this.carService = new CarService();
+    constructor(carService: CarService){
+        this.carService = carService;
     }
 
-    public initRoutes(){
-        this.router.get("/loadAll",this.loadAll.bind(this));
-    }
-
-    public loadAll(req: any, res):void{
-        this.carService.loadAll().then((cars) => {
-            res.send(cars)
-        });
+    @httpGet("/")
+    public loadAll(): Promise<Array<ICar>>{
+        return this.carService.loadAll();
     }
 }
-
-const carController = new CarController();
-carController.initRoutes();
-
-export default carController.router;

@@ -1,32 +1,27 @@
+import 'reflect-metadata';
+import { interfaces, InversifyExpressServer, TYPE } from 'inversify-express-utils';
 import express from 'express';
 import * as routes from './config/routes.config';
-import mongoConfig from './config/mongo.config'
+import mongoConfig from './config/mongo.config';
+import DICOntainer from './config/ioc.config';
+
+
 
 const port = 3000;
 
 
 class App {
 
-  public express: express.Application;
+  private server: InversifyExpressServer;
 
   constructor(){
-    this.express = express();
+    this.server = new InversifyExpressServer(DICOntainer);
     
   }
 
-  private initRoutes() : void{
-      routes.register(this.express);
-  }
-
   public bootstrap(): void{
-    this.initRoutes();
     mongoConfig.connect();
-    this.express.listen(port, err => {
-      if (err) {
-        return console.error(err);
-      }
-      return console.log(`server is listening on ${port}`);
-    });
+    this.server.build().listen(port);
   }
 }
 

@@ -1,5 +1,9 @@
 import {Router, Request, Response, NextFunction} from 'express';
+import { injectable } from 'inversify';
+import { interfaces, controller, httpGet, httpPost, httpDelete, request, queryParam, response, requestParam } from "inversify-express-utils";
 
+
+@controller("/hello")
 export class HelloController {
 
     router: Router;
@@ -12,12 +16,8 @@ export class HelloController {
         this.router.get("/greeting",this.sayeHello);
     }
 
-    sayeHello( req: any, res ):void{
-        res.send("Hello Node (y) ");
+    @httpGet('/greeting')
+    private sayeHello( ):String{
+        return "Hello Node (y) ";
     }
 }
-
-const helloController = new HelloController();
-helloController.initRoutes();
-
-export default helloController.router;
