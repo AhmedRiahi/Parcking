@@ -9,6 +9,7 @@
       "types": ["reflect-metadata"],
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
+      "resolveJsonModule": true
     },
     "lib": ["es2015"]
   }
